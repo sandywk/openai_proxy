@@ -1,0 +1,8 @@
+version: '3'
+services:
+  openai_proxy:
+    image: nginx:latest
+    volumes:
+      - ./openai_proxy.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - "80:80"
