@@ -12,6 +12,7 @@ RUN apt-get update && \
     zlib1g \
     zlib1g-dev \
     libssl-dev
+    
 
 WORKDIR /usr/local/src
 
