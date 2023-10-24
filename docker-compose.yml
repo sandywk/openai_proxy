@@ -6,3 +6,10 @@ services:
       - ./openai_proxy.conf:/etc/nginx/conf.d/default.conf
     ports:
       - "80:80"
+
+  download_proxy:
+    image: nginx:latest
+    volumes:
+      - ./download_proxy.conf:/etc/nginx/nginx.conf
+    ports:
+      - '3128:80'
