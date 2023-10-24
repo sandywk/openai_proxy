@@ -41,7 +41,11 @@ RUN curl -O http://nginx.org/download/nginx-1.13.6.tar.gz && \
 WORKDIR /usr/local/src/nginx-1.13.6
 
 # 从源码编译 Nginx 并包含 ngx_http_proxy_connect_module
-RUN ./configure --add-module=../ngx_http_proxy_connect_module-0.0.5 && \
+# RUN ./configure --add-module=../ngx_http_proxy_connect_module-0.0.5 && \
+#     make && \
+#     make install
+
+RUN ./configure --with-cc-opt=-Wno-error --add-module=../ngx_http_proxy_connect_module-0.0.5 && \
     make && \
     make install
 
