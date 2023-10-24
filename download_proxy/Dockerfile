@@ -1,7 +1,10 @@
 FROM debian:stretch-slim
 
-# Install necessary dependencies
-RUN apt-get update && \
+# 更换 APT 源并清理缓存
+RUN sed -i 's/deb.debian.org/mirrors.aliyun.com/g' /etc/apt/sources.list && \
+    sed -i 's/security.debian.org/mirrors.aliyun.com/g' /etc/apt/sources.list && \
+    apt-get clean && \
+    apt-get update && \
     apt-get install -y \
     wget \
     curl \
@@ -12,26 +15,25 @@ RUN apt-get update && \
     zlib1g \
     zlib1g-dev \
     libssl-dev
-    
 
 WORKDIR /usr/local/src
 
-# Download ngx_http_proxy_connect_module source code
+# 下载 ngx_http_proxy_connect_module 源码
 RUN wget https://github.com/chobits/ngx_http_proxy_connect_module/archive/refs/tags/v0.0.1.tar.gz && \
     tar -xvf v0.0.1.tar.gz
 
-# Download and extract Nginx source code
+# 下载并解压 Nginx 源码
 RUN curl -O http://nginx.org/download/nginx-1.19.1.tar.gz && \
     tar -xvf nginx-1.19.1.tar.gz
 
 WORKDIR /usr/local/src/nginx-1.19.1
 
-# Compile Nginx from source including ngx_http_proxy_connect_module
+# 从源码编译 Nginx 并包含 ngx_http_proxy_connect_module
 RUN ./configure --add-module=../ngx_http_proxy_connect_module-0.0.1 && \
     make && \
     make install
 
-# Clean up unnecessary software and files to reduce image size
+# 清理不再需要的软件和文件以减小镜像大小
 RUN apt-get remove -y \
     wget \
     curl \
@@ -43,8 +45,8 @@ RUN apt-get remove -y \
     apt-get autoremove -y && \
     rm -rf /var/lib/apt/lists/*
 
-# Copy Nginx configuration file into image
+# 将 Nginx 配置文件复制到镜像
 COPY download_proxy.conf /usr/local/nginx/conf/nginx.conf
 
-# Set Nginx as the default command for the Docker container
+# 设置 Nginx 为 Docker 容器的默认命令
 CMD ["/usr/local/nginx/sbin/nginx", "-g", "daemon off;"]
