@@ -9,7 +9,7 @@ services:
 
   download_proxy:
     # image: nginx:latest
-    image: anmichi/nginx_proxy_connect_module
+    image: apheris/proxy
     volumes:
       - ./download_proxy.conf:/etc/nginx/nginx.conf
     ports:
