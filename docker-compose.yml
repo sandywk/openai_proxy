@@ -8,7 +8,7 @@ services:
       - "80:80"
 
   download_proxy:
-    build: .
+    build: ./download_proxy
     ports:
       - "3128:3128"
 
