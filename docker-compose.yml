@@ -9,7 +9,7 @@ services:
 
   download_proxy:
     # image: nginx:latest
-    image: apheris/proxy
+    image: jungsoft/alpine-nginx-forward-proxy
     volumes:
       - ./download_proxy.conf:/etc/nginx/nginx.conf
     ports:
