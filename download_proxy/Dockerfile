@@ -46,7 +46,8 @@ RUN apt-get remove -y \
     rm -rf /var/lib/apt/lists/*
 
 # 将 Nginx 配置文件复制到镜像
-COPY download_proxy.conf /usr/local/nginx/conf/nginx.conf
+# COPY download_proxy.conf /usr/local/nginx/conf/nginx.conf
+COPY download_proxy.conf /usr/local/nginx/conf.d/default.conf
 
 # 设置 Nginx 为 Docker 容器的默认命令
 CMD ["/usr/local/nginx/sbin/nginx", "-g", "daemon off;"]
