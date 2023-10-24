@@ -38,7 +38,7 @@ RUN wget https://github.com/chobits/ngx_http_proxy_connect_module/archive/refs/t
 RUN wget http://nginx.org/download/nginx-1.9.2.tar.gz && \
     tar -xzvf nginx-1.9.2.tar.gz && \
     cd nginx-1.9.2 && \
-    patch -p1 < /path/to/ngx_http_proxy_connect_module/patch/proxy_connect.patch
+    patch -p1 < ../ngx_http_proxy_connect_module-0.0.5/patch/proxy_connect.patch
 
 WORKDIR /usr/local/src/nginx-1.9.2
 
