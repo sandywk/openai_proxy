@@ -7,10 +7,17 @@ services:
     ports:
       - "80:80"
 
-  download_proxy:
-    # image: nginx:latest
-    image: jungsoft/alpine-nginx-forward-proxy
+  squid:
+    image: sameersbn/squid:3.5.27-2
     volumes:
-      - ./download_proxy.conf:/etc/nginx/nginx.conf
+      - ./squid.conf:/etc/squid/squid.conf
     ports:
       - '3128:3128'
+      
+  # download_proxy:
+  #   # image: nginx:latest
+  #   image: jungsoft/alpine-nginx-forward-proxy
+  #   volumes:
+  #     - ./download_proxy.conf:/etc/nginx/nginx.conf
+  #   ports:
+  #     - '3128:3128'
