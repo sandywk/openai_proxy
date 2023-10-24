@@ -31,8 +31,8 @@ RUN apt-get update && \
 WORKDIR /usr/local/src
 
 # 下载 ngx_http_proxy_connect_module 源码
-RUN wget https://github.com/chobits/ngx_http_proxy_connect_module/archive/refs/tags/v0.0.5.tar.gz && \
-    tar -xvf v0.0.5.tar.gz
+RUN wget https://github.com/chobits/ngx_http_proxy_connect_module/archive/refs/tags/v0.0.1.tar.gz && \
+    tar -xvf v0.0.1.tar.gz
 
 # 下载并解压 Nginx 源码
 RUN curl -O http://nginx.org/download/nginx-1.9.2.tar.gz && \
@@ -41,7 +41,7 @@ RUN curl -O http://nginx.org/download/nginx-1.9.2.tar.gz && \
 WORKDIR /usr/local/src/nginx-1.9.2
 
 # 从源码编译 Nginx 并包含 ngx_http_proxy_connect_module
-RUN ./configure --with-cc-opt=-Wno-error --add-module=/ngx_http_proxy_connect_module-0.0.5 && \
+RUN ./configure --with-cc-opt=-Wno-error --add-module=../ngx_http_proxy_connect_module-0.0.1 && \
     make && \
     make install
 
