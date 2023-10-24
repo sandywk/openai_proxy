@@ -12,4 +12,4 @@ services:
     volumes:
       - ./download_proxy.conf:/etc/nginx/nginx.conf
     ports:
-      - '3128:80'
+      - '3128:3128'
