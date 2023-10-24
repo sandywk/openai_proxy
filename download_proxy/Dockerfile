@@ -35,8 +35,8 @@ RUN wget https://github.com/chobits/ngx_http_proxy_connect_module/archive/refs/t
     tar -xvf v0.0.1.tar.gz
 
 # 下载并解压 Nginx 源码
-RUN curl -O http://nginx.org/download/nginx-1.19.1.tar.gz && \
-    tar -xvf nginx-1.19.1.tar.gz
+RUN curl -O http://nginx.org/download/nginx-1.13.6.tar.gz && \
+    tar -xvf nginx-1.13.6.tar.gz
 
 WORKDIR /usr/local/src/nginx-1.19.1
 
