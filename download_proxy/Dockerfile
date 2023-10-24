@@ -1,23 +1,9 @@
 FROM debian:buster-slim
 
 # 更换 APT 源并清理缓存
-# RUN sed -i 's/deb.debian.org/mirrors.aliyun.com/g' /etc/apt/sources.list && \
-#     sed -i 's/security.debian.org/mirrors.aliyun.com/g' /etc/apt/sources.list && \
-#     apt-get clean && \
-#     apt-get update && \
-#     apt-get install -y \
-#     wget \
-#     curl \
-#     gcc \
-#     make \
-#     libpcre3 \
-#     libpcre3-dev \
-#     zlib1g \
-#     zlib1g-dev \
-#     libssl-dev
 
 RUN apt-get update && \
-    apt-get install -y \
+    apt-get install -y patch \
     wget \
     curl \
     gcc \
