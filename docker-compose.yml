@@ -11,7 +11,7 @@ services:
     build: .
     ports:
       - "3128:3128"
-      
+
   # squid:
   #   image: sameersbn/squid:3.5.27-2
   #   volumes:
